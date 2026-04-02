@@ -73,37 +73,14 @@ const CONFIG = {
         heartExplosionSize: 1.5         // Size of heart explosion effect (1.2-2.0 recommended)
     },
 
-    let bgMusic = null;
-
-function initMusic() {
-    if (!window.VALENTINE_CONFIG.music.enabled) return;
-
-    bgMusic = new Audio(window.VALENTINE_CONFIG.music.musicUrl);
-    bgMusic.loop = true;
-    bgMusic.volume = 0; // Start leise
-
-    document.addEventListener("click", startMusicOnce);
-}
-
-function startMusicOnce() {
-    if (!bgMusic) return;
-
-    bgMusic.play();
-
-    // 🎵 Fade-In Effekt
-    let targetVolume = window.VALENTINE_CONFIG.music.volume;
-    let step = targetVolume / 20;
-
-    let fade = setInterval(() => {
-        if (bgMusic.volume < targetVolume) {
-            bgMusic.volume = Math.min(bgMusic.volume + step, targetVolume);
-        } else {
-            clearInterval(fade);
-        }
-    }, 100);
-
-    document.removeEventListener("click", startMusicOnce);
-}
+music: 
+    enabled: true,
+    autoplay: true,
+    musicUrl: "https://res.cloudinary.com/dncywqfpb/video/upload/v1738399057/music_qrhjvy.mp3",
+    startText: "🎵 Play Music",
+    stopText: "🔇 Stop Music",
+    volume: 0.75
+    },
 
 // Initialisieren
 initMusic();
