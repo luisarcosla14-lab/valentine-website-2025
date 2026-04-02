@@ -60,14 +60,14 @@ const CONFIG = {
     music: {
         enabled: true,
         autoplay: true,
-        musicUrl: "https://res.cloudinary.com/dncywqfpb/video/upload/v1738399057/music_qrhjvy.mp3",
+        musicUrl: "https://res.cloudinary.com/dnqvn4zfq/video/upload/v1774898015/T%C3%BA_Con_%C3%89l_ri7uta.mp3",
         startText: "🎵 Play Music",
         stopText: "🔇 Stop Music",
         volume: 0.75
     }
 };
 
-// Don't modify anything below this line unless you know what you're doing
+// Don't modify anything below this line
 window.VALENTINE_CONFIG = CONFIG;
 
 // ============================================
@@ -87,65 +87,54 @@ function initMusic() {
     bgMusic.volume = music.volume;
     bgMusic.preload = "auto";
 
+    // Start nach erstem Klick (Browser-Regel)
     if (music.autoplay) {
-        const startOnFirstClick = () => {
+        const startOnClick = () => {
             if (musicStarted) return;
 
             bgMusic.play()
                 .then(() => {
                     musicStarted = true;
-                    console.log("Background music started");
                 })
-                .catch((err) => {
-                    console.log("Music could not start automatically:", err);
-                });
+                .catch(err => console.log("Autoplay blockiert:", err));
 
-            document.removeEventListener("click", startOnFirstClick);
+            document.removeEventListener("click", startOnClick);
         };
 
-        document.addEventListener("click", startOnFirstClick);
+        document.addEventListener("click", startOnClick);
     }
 
-    // Optional music toggle button
-    const musicButton = document.createElement("button");
-    musicButton.innerText = music.startText;
-    musicButton.style.position = "fixed";
-    musicButton.style.bottom = "20px";
-    musicButton.style.right = "20px";
-    musicButton.style.padding = "10px 15px";
-    musicButton.style.border = "none";
-    musicButton.style.borderRadius = "12px";
-    musicButton.style.background = CONFIG.colors.buttonBackground;
-    musicButton.style.color = "white";
-    musicButton.style.cursor = "pointer";
-    musicButton.style.zIndex = "9999";
-    musicButton.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+    // 🎵 Button zum Steuern
+    const btn = document.createElement("button");
+    btn.innerText = music.startText;
 
-    musicButton.addEventListener("click", () => {
+    btn.style.position = "fixed";
+    btn.style.bottom = "20px";
+    btn.style.right = "20px";
+    btn.style.padding = "10px 15px";
+    btn.style.border = "none";
+    btn.style.borderRadius = "12px";
+    btn.style.background = CONFIG.colors.buttonBackground;
+    btn.style.color = "white";
+    btn.style.cursor = "pointer";
+    btn.style.zIndex = "9999";
+
+    btn.onclick = () => {
         if (!bgMusic) return;
 
         if (bgMusic.paused) {
-            bgMusic.play()
-                .then(() => {
-                    musicStarted = true;
-                    musicButton.innerText = music.stopText;
-                })
-                .catch((err) => {
-                    console.log("Play failed:", err);
-                });
+            bgMusic.play();
+            btn.innerText = music.stopText;
         } else {
             bgMusic.pause();
-            musicButton.innerText = music.startText;
+            btn.innerText = music.startText;
         }
-    });
+    };
 
-    document.body.appendChild(musicButton);
+    document.body.appendChild(btn);
 }
 
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initMusic);
-} else {
-    initMusic();
-}
+// Start
+document.addEventListener("DOMContentLoaded", initMusic);
 
 
