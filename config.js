@@ -108,3 +108,23 @@ function initMusic() {
 // Start
 document.addEventListener("DOMContentLoaded", initMusic);
 
+
+// ============================================
+// ✨ NUR "my love" entfernen (NEU)
+// ============================================
+
+function removeMyLoveOnly() {
+    const elements = document.querySelectorAll("h1, h2, h3, p, div, span");
+
+    elements.forEach(el => {
+        if (!el.textContent) return;
+
+        el.textContent = el.textContent.replace(/my love/gi, "").trim();
+    });
+}
+
+// nach Laden ausführen
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(removeMyLoveOnly, 300);
+    setTimeout(removeMyLoveOnly, 1000);
+});
