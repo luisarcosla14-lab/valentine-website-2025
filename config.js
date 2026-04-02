@@ -13,32 +13,32 @@ const CONFIG = {
 
     questions: {
         first: {
-            text: "Do you like me?",
-            yesBtn: "Yes",
-            noBtn: "No",
-            secretAnswer: "I don't like you, I love you! ❤️"
+            text: "Hat dir unser Treffen gefallen?",
+            yesBtn: "Ja",
+            noBtn: "Nein",
+            secretAnswer: "Ich mag dich nicht, ich liebe dich! ❤️"
         },
         second: {
-            text: "How much do you love me?",
-            startText: "This much!",
-            nextBtn: "Next ❤️"
+            text: "Wie sehr liebst du Suhi ? hahah",
+            startText: "So sehr!",
+            nextBtn: "Weiter ❤️"
         },
         third: {
-            text: "Will you be my Valentine on February 14th, 2025? 🌹",
-            yesBtn: "Yes!",
-            noBtn: "No"
+            text: "Willst du mein Valentins-Date sein? 🌹",
+            yesBtn: "Ja!",
+            noBtn: "Nein"
         }
     },
 
     loveMessages: {
-        extreme: "WOOOOW You love me that much?? 🥰🚀💝",
-        high: "To infinity and beyond! 🚀💝",
-        normal: "And beyond! 🥰"
+        extreme: "WOOOOW Du liebst mich sooo sehr?? 🥰🚀💝",
+        high: "Bis zur Unendlichkeit und noch viel weiter! 🚀💝",
+        normal: "Und noch mehr! 🥰"
     },
 
     celebration: {
-        title: "Yay! I'm the luckiest person in the world! 🎉💝💖💝💓",
-        message: "Now come get your gift, a big warm hug and a huge kiss!",
+        title: "Yay! Ich bin der glücklichste Mensch der Welt! 🎉💝💖💝💓",
+        message: "Jetzt komm her für dein Geschenk: eine warme Umarmung und einen dicken Kuss!",
         emojis: "🎁💖🤗💝💋❤️💕"
     },
 
@@ -87,7 +87,7 @@ function initMusic() {
     bgMusic.volume = music.volume;
     bgMusic.preload = "auto";
 
-    // Start nach erstem Klick (Browser-Regel)
+    // Start nach dem ersten Klick irgendwo auf der Seite
     if (music.autoplay) {
         const startOnClick = () => {
             if (musicStarted) return;
@@ -103,38 +103,10 @@ function initMusic() {
 
         document.addEventListener("click", startOnClick);
     }
-
-    // 🎵 Button zum Steuern
-    const btn = document.createElement("button");
-    btn.innerText = music.startText;
-
-    btn.style.position = "fixed";
-    btn.style.bottom = "20px";
-    btn.style.right = "20px";
-    btn.style.padding = "10px 15px";
-    btn.style.border = "none";
-    btn.style.borderRadius = "12px";
-    btn.style.background = CONFIG.colors.buttonBackground;
-    btn.style.color = "white";
-    btn.style.cursor = "pointer";
-    btn.style.zIndex = "9999";
-
-    btn.onclick = () => {
-        if (!bgMusic) return;
-
-        if (bgMusic.paused) {
-            bgMusic.play();
-            btn.innerText = music.stopText;
-        } else {
-            bgMusic.pause();
-            btn.innerText = music.startText;
-        }
-    };
-
-    document.body.appendChild(btn);
 }
 
 // Start
 document.addEventListener("DOMContentLoaded", initMusic);
+
 
 
