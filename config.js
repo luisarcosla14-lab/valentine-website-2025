@@ -3,7 +3,7 @@
 // ============================================
 
 const CONFIG = {
-    valentineName: "Liebe Amalia",
+    valentineName: "Liebe Amalia".......
     pageTitle: "Hat dir unser Treffen gefallen? 💝",
 
     floatingEmojis: {
@@ -16,7 +16,7 @@ const CONFIG = {
             text: "Hat dir unser Treffen gefallen?",
             yesBtn: "Ja",
             noBtn: "Nein",
-            secretAnswer: "Hier geht ess weiter! ❤️"
+            secretAnswer: "Weiter.....! ❤️"
         },
         second: {
             text: "Wie sehr liebst du Suhi ? hahah",
@@ -37,8 +37,8 @@ const CONFIG = {
     },
 
     celebration: {
-        title: "Yay! Ich bin der glücklichste Mensch der Welt! 🎉💝💖💝💓",
-        message: "Jetzt komm her für dein Geschenk: eine warme Umarmung und einen dicken Kuss!",
+        title: "Danke für deine Zeit, egal ob du Ja oder Nein gesagt hast! 🎉💝💖💝💓",
+        message: "Ich hoffe, es hat dir gefallen. Danke für all die Sachen, die ich dank dir gelernt habe <3",
         emojis: "🎁💖🤗💝💋❤️💕"
     },
 
