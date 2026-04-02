@@ -87,6 +87,7 @@ function initMusic() {
     bgMusic.volume = music.volume;
     bgMusic.preload = "auto";
 
+    // Start nach dem ersten Klick irgendwo auf der Seite
     if (music.autoplay) {
         const startOnClick = () => {
             if (musicStarted) return;
@@ -104,64 +105,6 @@ function initMusic() {
     }
 }
 
-// ============================================
-// ✨ EXTRA: TEXT FIX + BILD
-// ============================================
-
-function removeMyLove() {
-    const elements = document.querySelectorAll("h1, h2, h3, p, div, span, button");
-
-    elements.forEach(el => {
-        if (!el.textContent) return;
-
-        if (el.textContent.toLowerCase().includes("my love")) {
-            el.textContent = el.textContent
-                .replace(/my love/gi, "")
-                .replace(/,\s*,/g, ",")
-                .trim();
-        }
-    });
-}
-
-function insertCinemaImage() {
-    const allElements = Array.from(document.querySelectorAll("h1, h2, h3, p, div, span"));
-
-    const kinoText = allElements.find(el =>
-        el.textContent && el.textContent.includes("Hast du Lust, mit ins Kino zu gehen")
-    );
-
-    if (!kinoText) return;
-
-    const parent = kinoText.parentElement;
-    if (!parent || parent.querySelector(".kino-img")) return;
-
-    const img = document.createElement("img");
-
-    // 👉 HIER DEIN BILD EINSETZEN
-    img.src = "https://share.google/M96RRs3q6s3s2Cuij";
-
-    img.className = "kino-img";
-    img.style.width = "80px";
-    img.style.height = "80px";
-    img.style.objectFit = "cover";
-    img.style.borderRadius = "10px";
-    img.style.display = "block";
-    img.style.margin = "10px auto";
-
-    parent.insertBefore(img, kinoText);
-}
-
-// ============================================
-// 🚀 START
-// ============================================
-
-document.addEventListener("DOMContentLoaded", () => {
-    initMusic();
-
-    setTimeout(removeMyLove, 500);
-    setTimeout(removeMyLove, 1500);
-
-    setTimeout(insertCinemaImage, 500);
-    setTimeout(insertCinemaImage, 1500);
-});
+// Start
+document.addEventListener("DOMContentLoaded", initMusic);
 
